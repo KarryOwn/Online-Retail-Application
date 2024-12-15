@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -76,11 +75,4 @@ class AdminController extends Controller
         $product = Product::paginate(4);
         return view('admin.view_product',compact('product'));
     }
-=======
-use Illuminate\Http\Request;
-
-class AdminController extends Controller
-{
-    //
->>>>>>> c949df6b852718c00c12e39ecc7150de7ea011b0
 }

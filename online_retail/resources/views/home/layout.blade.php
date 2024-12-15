@@ -8,15 +8,8 @@
 </head>
 <body body class="bg-cover bg-center h-screen flex flex-col bg-cyan-950">
   @include('components.navbar')
-
-  <div class="flex items-start justify-center mt-4 px-4">
-      <div class="w-full max-w-30xl">
-          @include('components.slider')
-      </div>
-  </div>
-
   <main class="p-4">
-  @include('components.product_display')
+  @yield('content')
   </main>
   @include('components.footer')
 </body>
