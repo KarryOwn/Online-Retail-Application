@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -30,7 +33,6 @@ class CartController extends Controller
     public function index()
     {
         $cartItems = Cart::where('user_id', auth()->id())->with('product')->get();
-
         return view('cart.index', compact('cartItems'));
     }
 
@@ -60,11 +62,36 @@ class CartController extends Controller
 
     public function checkout()
     {
-        $cartItems = Cart::where('user_id', auth()->id())->get();
+        $user = Auth::user();
+        $cartItems = $user->cart; 
+        $totalPrice = $cartItems->sum(function ($item) {
+            return $item->product->price * $item->quantity;
+        });
 
-        Cart::where('user_id', auth()->id())->delete();
+        $order = Order::create([
+            'user_id' => $user->id,
+            'total_price' => $totalPrice,
+            'status' => 'pending',
+            'shipping_address' => 'Sample Shipping Address', // Replace with actual data
+        ]);
 
-        return redirect()->route('shop')->with('success', 'Order placed successfully!');
+        foreach ($cartItems as $item) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $item->product_id,
+                'quantity' => $item->quantity,
+                'price' => $item->product->price,
+            ]);
+        }
+
+        $user->cart()->delete();
+
+        return redirect()->route('orders.show', $order->id)->with('success', 'Order placed successfully!');
     }
 
+    public function showOrder($id)
+    {
+        $order = Order::with('items.product')->findOrFail($id);
+        return view('orders.orderDetail', compact('order'));
+    }
 }

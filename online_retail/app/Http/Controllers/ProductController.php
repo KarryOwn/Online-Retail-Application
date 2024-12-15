@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function shop()
-    {
-        $products = Product::all();
+    public function shop(Request $request) {
+        $category = $request->query('category');
+        $products = Product::when($category, function ($query, $category) {
+            return $query->where('category', $category);
+        })->get();
+    
         return view('home.shop', compact('products'));
     }
 

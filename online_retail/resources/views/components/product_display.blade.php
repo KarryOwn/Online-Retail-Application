@@ -1,15 +1,27 @@
-<div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold mb-4 text-center text-white">New Shit</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<div class="container mx-auto py-8">
+    <div class="flex flex-wrap -mx-2"> <!-- Reduce spacing between boxes -->
         @foreach($products as $product)
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="{{ $product->image_url ?? 'https://via.placeholder.com/300' }}" alt="{{ $product->name }}" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-lg font-semibold">{{ $product->name }}</h3>
-                    <p class="text-gray-600 mt-2">${{ number_format($product->price, 2) }}</p>
-                    <a href="{{ route('product.show', $product->id) }}" class="block mt-4 text-blue-500 hover:underline">View Details</a>
+            <a href="{{ route('product.show', $product->id) }}" 
+               class="w-full sm:w-1/2 lg:w-1/4 p-2 cursor-pointer group"> <!-- Adjust width and padding -->
+                <div class="flex bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <!-- Product Image -->
+                    <div class="w-1/3">
+                        <img src="{{asset('/products/'.$product->image)}}"
+                             alt="{{ $product->name }}" 
+                             class="rounded-l-lg object-cover h-24 w-full"> <!-- Set fixed height -->
+                    </div>
+                    
+                    <!-- Product Details -->
+                    <div class="w-2/3 p-2"> <!-- Reduce padding -->
+                        <h2 class="text-lg font-semibold text-gray-800 group-hover:text-blue-500"> <!-- Reduce font size -->
+                            {{ $product->title }}
+                        </h2>
+                        <p class="text-gray-700 font-bold text-md"> <!-- Adjust font size -->
+                            ${{ number_format($product->price, 2) }}
+                        </p>
+                    </div>
                 </div>
-            </div>
+            </a>
         @endforeach
     </div>
 </div>

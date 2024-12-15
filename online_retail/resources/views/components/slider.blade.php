@@ -1,17 +1,17 @@
 <div id="auto-carousel" class="relative w-full flex justify-center" data-carousel="slide">
     <!-- Carousel wrapper -->
-    <div style="height: 280px; width: 1100px;" class="relative overflow-hidden rounded-lg">
+    <div style="height: 353px; width: 1100px;" class="relative overflow-hidden rounded-lg">
         <!-- Item 1 -->
         <div class="absolute inset-0 transform transition-transform duration-700 ease-in-out translate-x-0" data-carousel-item>
-            <img src="https://www.tomizone.com/wp-content/uploads/2017/10/1080x720.png" class="block w-full h-full object-cover" alt="Slide 1">
+            <img src="{{asset('/admincss/img/steam-banner(1).jpg')}}" class="block w-full h-full object-cover" alt="Slide 1">
         </div>
         <!-- Item 2 -->
         <div class="absolute inset-0 transform transition-transform duration-700 ease-in-out translate-x-full hidden" data-carousel-item>
-            <img src="/images/slide-2.jpg" class="block w-full h-full object-cover" alt="Slide 2">
+            <img src="{{asset('/admincss/img/god-of-war-series-blog-db(1).jpg')}}" class="block w-full h-full object-cover" alt="Slide 2">
         </div>
         <!-- Item 3 -->
         <div class="absolute inset-0 transform transition-transform duration-700 ease-in-out translate-x-full hidden" data-carousel-item>
-            <img src="/images/slide-3.jpg" class="block w-full h-full object-cover" alt="Slide 3">
+            <img src="{{asset('/admincss/img/Exploring-Minecraft-Bedrock-Edition-2011-Game-Icons-Banners(2).webp')}}" class="block w-full h-full object-cover" alt="Slide 3">
         </div>
 
         <!-- Slider controls -->

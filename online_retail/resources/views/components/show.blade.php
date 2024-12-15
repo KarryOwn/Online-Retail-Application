@@ -4,7 +4,7 @@
 <div class="container mx-auto py-8">
     <div class="flex flex-wrap -mx-4">
         <div class="w-full md:w-1/2 px-4">
-            <img src="{{ $product->image ? asset($product->image) : asset('images/default-product.jpg') }}" 
+            <img src="{{asset('/products/'.$product->image)}}" 
                  alt="{{ $product->name }}" 
                  class="rounded-lg shadow-lg">
         </div>

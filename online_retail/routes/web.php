@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', [HomeController::class, 'home']);
 
@@ -24,6 +25,11 @@ Route::get('admin/dashboard', [HomeController::class, 'index']) -> middleware(['
 Route::get('/shop', [ProductController::class, 'shop'])->name('shop');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/shop/category/{id}', [ProductController::class, 'showCategory'])->name('shop.category');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/orders/{order}', [CartController::class, 'showOrder'])->name('orders.show');
+    Route::get('/user/orders', [OrderController::class, 'userOrders'])->name('userOrders');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
