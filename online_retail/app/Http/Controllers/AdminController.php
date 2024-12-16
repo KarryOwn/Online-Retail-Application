@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Order;
+
 
 class AdminController extends Controller
 {
@@ -115,6 +117,21 @@ class AdminController extends Controller
     }
 
     public function view_orders(){
-        return view('admin.order');
+        $data = Order::all();
+        return view('admin.order',compact('data'));
+    }
+
+    public function on_pending($id){
+        $data = Order::find($id);
+        $data->status = 'pending';
+        $data->save();
+        return redirect('/view_orders');
+    }
+
+    public function completed($id){
+        $data = Order::find($id);
+        $data->status = 'Completed';
+        $data->save();
+        return redirect('/view_orders');
     }
 }

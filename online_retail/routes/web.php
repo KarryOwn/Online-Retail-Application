@@ -66,4 +66,8 @@ route::post('edit_product/{id}',[AdminController::class,'edit_product'])->middle
 route::get('product_search',[AdminController::class,'product_search'])->middleware(['auth','admin']);
 
 route::get('view_orders',[AdminController::class,'view_orders'])->middleware(['auth','admin']);
+
+route::get('on_pending/{id}',[AdminController::class,'on_pending'])->middleware(['auth','admin']);
+
+route::get('completed/{id}',[AdminController::class,'completed'])->middleware(['auth','admin']);
 require __DIR__.'/auth.php';

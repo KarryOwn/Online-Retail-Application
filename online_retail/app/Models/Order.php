@@ -14,11 +14,13 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+        return $this->hasOne('App\Models\User','id','user_id');
     }
 
     public function items()
     {
         return $this->hasMany(OrderItem::class);
     }
+
 
 }

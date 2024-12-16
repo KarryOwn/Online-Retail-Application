@@ -36,7 +36,7 @@
                     <div class="title">
                       <div class="icon"><i class="icon-paper-and-pencil"></i></div><strong>Total Orders</strong>
                     </div>
-                    <div class="number dashtext-3">12</div>
+                    <div class="number dashtext-3">{{$order}}</div>
                   </div>
                   <div class="progress progress-template">
                     <div role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-3"></div>
@@ -49,7 +49,7 @@
                     <div class="title">
                       <div class="icon"><i class="icon-writing-whiteboard"></i></div><strong>Total Delivered</strong>
                     </div>
-                    <div class="number dashtext-4">12</div>
+                    <div class="number dashtext-4">{{$completed}}</div>
                   </div>
                   <div class="progress progress-template">
                     <div role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-template dashbg-4"></div>
