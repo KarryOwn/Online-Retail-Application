@@ -23,18 +23,22 @@
                             class="w-full h-48 object-cover rounded-t-lg">
                     </a>
                     <div class="p-4 flex-grow">
-                        <h2 class="text-lg font-semibold">
-                            <a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
+                        <h2 class="text-lg font-bold">
+                            <a href="{{ route('product.show', $product->id) }}">{{ $product->title }}</a>
                         </h2>
-                        <p class="text-gray-700 font-bold mt-2">
-                            ${{ number_format($product->price, 2) }}
+                        <p class="text-gray-700 font-semibold mt-2">
+                            {{ number_format($product->price, 2) }}$
                         </p>
                         <p class="text-gray-500 text-sm mt-2">{{ $product->quantity > 0 ? 'In Stock' : 'Out of Stock' }}</p>
                     </div>
                     <form method="POST" action="{{ route('cart.add', $product->id) }}" class="mt-auto">
                         @csrf
-                        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-b-lg">
-                            Add to Cart
+                        <button 
+                            type="submit" 
+                            class="w-full text-white py-3 px-6 rounded-b-lg 
+                                {{ $product->quantity > 0 ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-400 cursor-not-allowed' }}"
+                            {{ $product->quantity <= 0 ? 'disabled' : '' }}>
+                            {{ $product->quantity > 0 ? 'Add to Cart' : 'Out of Stock' }}
                         </button>
                     </form>
                 </div>

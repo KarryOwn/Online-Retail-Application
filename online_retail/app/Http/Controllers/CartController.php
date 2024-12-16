@@ -72,7 +72,7 @@ class CartController extends Controller
             'user_id' => $user->id,
             'total_price' => $totalPrice,
             'status' => 'pending',
-            'shipping_address' => 'Sample Shipping Address', // Replace with actual data
+            'shipping_address' => $user->email,
         ]);
 
         foreach ($cartItems as $item) {

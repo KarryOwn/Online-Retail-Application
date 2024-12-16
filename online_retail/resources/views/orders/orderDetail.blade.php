@@ -52,9 +52,6 @@
         <a href="{{route('userOrders')}}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
             Back to Orders
         </a>
-        <a href="/support?order_id={{ $order->id }}" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded">
-            Contact Support
-        </a>
     </div>
 </div>
 @endsection

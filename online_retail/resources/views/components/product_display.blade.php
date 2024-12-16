@@ -17,7 +17,7 @@
                             {{ $product->title }}
                         </h2>
                         <p class="text-gray-700 font-bold text-md"> <!-- Adjust font size -->
-                            ${{ number_format($product->price, 2) }}
+                            {{ number_format($product->price, 2) }}$
                         </p>
                     </div>
                 </div>
