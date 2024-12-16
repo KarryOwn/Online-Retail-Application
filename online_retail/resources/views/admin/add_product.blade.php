@@ -52,7 +52,7 @@
             
             @csrf   
             <div class="input_deg">
-                    <label>Product Titile</label>
+                    <label>Product Title</label>
                     <input type="text" name="title" required>
                 </div>
 
