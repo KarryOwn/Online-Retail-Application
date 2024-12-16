@@ -22,7 +22,7 @@
             </p>
             <form method="POST" action="{{ route('cart.add', $product->id) }}">
                 @csrf
-                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg">
+                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg ">
                     Add to Cart
                 </button>
             </form>

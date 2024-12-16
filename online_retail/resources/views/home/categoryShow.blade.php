@@ -11,11 +11,9 @@
   <main class="p-4 flex-grow">
     @include('components.searchbar')
   <div class="container mx-auto py-8">
-    @if($products->isEmpty())
-        <p class="text-center text-gray-500">No products available at the moment. Please check back later.</p>
-    @else
+    <h2 class="text-2xl font-bold mb-6 text-indigo-50 text-center">Category: {{ ucfirst($category) }}</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            @foreach($products as $product)
+        @forelse($products as $product)
                 <div class="bg-white rounded-lg shadow-md flex flex-col">
                     <a href="{{ route('product.show', $product->id) }}">
                         <img src="{{asset('/products/'.$product->image)}}" 
@@ -24,7 +22,7 @@
                     </a>
                     <div class="p-4 flex-grow">
                         <h2 class="text-lg font-semibold">
-                            <a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
+                            <a href="{{ route('product.show', $product->id) }}">{{ $product->title }}</a>
                         </h2>
                         <p class="text-gray-700 font-bold mt-2">
                             ${{ number_format($product->price, 2) }}
@@ -38,10 +36,11 @@
                         </button>
                     </form>
                 </div>
-            @endforeach
+        @empty
+            <p class="text-gray-500 col-span-3">No products found in this category.</p>
+        @endforelse
     </div>
-    @endif
-  </div>
+</div>
   </main>
   @include('components.footer')
 </body>

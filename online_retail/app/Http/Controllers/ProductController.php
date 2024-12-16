@@ -20,13 +20,25 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id); 
-        return view('components.show', compact('product'));
+        return view('components.productDetail', compact('product'));
     }
 
-    public function showCategory($id)
+    public function getProductsByCategory($category)
     {
-        $category = Category::findOrFail($id);
-        $products = $category->products; 
-        return view('shop', compact('products', 'category'));
+        $products = Product::where('category', $category)->get();
+
+        return view('home.categoryShow', compact('products', 'category'));
+    }
+
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+
+        $products = Product::when($search, function ($query, $search) {
+            $query->where('title', 'like', '%' . $search . '%')
+                ->orWhere('description', 'like', '%' . $search . '%');
+        })->get();
+
+        return view('home.shop', compact('products'));
     }
 }

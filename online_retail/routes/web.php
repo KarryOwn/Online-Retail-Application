@@ -11,7 +11,7 @@ use App\Http\Controllers\OrderController;
 Route::get('/', [HomeController::class, 'home']);
 
 Route::get('/dashboard', function () {
-    return view('home.index');
+    return redirect('/');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -24,7 +24,8 @@ Route::get('admin/dashboard', [HomeController::class, 'index']) -> middleware(['
 
 Route::get('/shop', [ProductController::class, 'shop'])->name('shop');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-Route::get('/shop/category/{id}', [ProductController::class, 'showCategory'])->name('shop.category');
+Route::get('/shop/category/{category}', [ProductController::class, 'getProductsByCategory'])->name('shop.category');
+Route::get('/shop', [ProductController::class, 'index'])->name('shop.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/orders/{order}', [CartController::class, 'showOrder'])->name('orders.show');
