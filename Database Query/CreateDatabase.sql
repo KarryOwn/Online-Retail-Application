@@ -1,1 +1,0 @@
-Create Database online_retail;

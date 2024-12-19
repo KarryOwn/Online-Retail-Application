@@ -16,6 +16,7 @@
         "php-flasher/flasher-toastr-symfony": "^2.1"
     },
     "require-dev": {
+        "andyabih/laravel-to-uml": "^1.0",
         "fakerphp/faker": "^1.23",
         "laravel/breeze": "^2.2",
         "laravel/pail": "^1.1",
